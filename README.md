@@ -18,22 +18,16 @@
 
 <div align="center">
 
-### Linguagens de Programação
-<img src="https://skillicons.dev/icons?i=java,python,javascript&theme=light" />
-
-### Desenvolvimento Web
-<img src="https://skillicons.dev/icons?i=html,css,javascript&theme=light" />
-
-### Frameworks
-<img src="https://skillicons.dev/icons?i=spring&theme=light" />
-
-### Banco de Dados
-<img src="https://skillicons.dev/icons?i=mysql,mongodb&theme=light" />
-
-### Ferramentas & Tecnologias
+<strong>Linguagens</strong><br>
+<img src="https://skillicons.dev/icons?i=java,python,javascript&theme=light" /><br><br>
+<strong>Web & Frameworks</strong><br>
+<img src="https://skillicons.dev/icons?i=html,css,spring&theme=light" /><br><br>
+<strong>Banco de Dados</strong><br>
+<img src="https://skillicons.dev/icons?i=mysql,mongodb&theme=light" /><br><br>
+<strong>Ferramentas</strong><br>
 <img src="https://skillicons.dev/icons?i=git,github,vscode,eclipse,idea&theme=light" />
-
 </div>
+
 
 ## 📊 GitHub Stats
 
