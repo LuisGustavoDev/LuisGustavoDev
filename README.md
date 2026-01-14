@@ -16,17 +16,27 @@
 
 ## 🛠️ Skills
 
-<div align="center">
-
-<strong>Linguagens</strong><br>
-<img src="https://skillicons.dev/icons?i=java,python,javascript&theme=light" /><br><br>
-<strong>Web & Frameworks</strong><br>
-<img src="https://skillicons.dev/icons?i=html,css,spring&theme=light" /><br><br>
-<strong>Banco de Dados</strong><br>
-<img src="https://skillicons.dev/icons?i=mysql,mongodb&theme=light" /><br><br>
-<strong>Ferramentas</strong><br>
+<table align="center">
+<tr>
+<td align="center"><strong>Linguagens</strong><br><br>
+<img src="https://skillicons.dev/icons?i=java,python,javascript&theme=light" />
+</td>
+<td align="center"><strong>Web & Frameworks</strong><br><br>
+<img src="https://skillicons.dev/icons?i=html,css,spring&theme=light" />
+</td>
+</tr>
+<tr>
+<td align="center"><strong>Banco de Dados</strong><br><br>
+<img src="https://skillicons.dev/icons?i=mysql,mongodb&theme=light" />
+</td>
+<td align="center"><strong>Ferramentas</strong><br><br>
 <img src="https://skillicons.dev/icons?i=git,github,vscode,eclipse,idea&theme=light" />
-</div>
+</td>
+</tr>
+</table>
+
+
+
 
 
 ## 📊 GitHub Stats
