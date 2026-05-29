@@ -35,14 +35,6 @@
 </tr>
 </table>
 
-
-
-
-
-## 📊 GitHub Stats
-
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=LuisGustavoDev&theme=default" />
-
 ## 📫 Contato
 
 <div align="center">
