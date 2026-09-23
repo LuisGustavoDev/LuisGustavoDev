@@ -5,7 +5,7 @@
 <div align="center">
 
 🎓 **Estudante de Ciência da Computação**  
-⚙️ **Full Stack & Backend Developer**  
+⚙️ **Full Stack Developer**  
 🔬 Interesse na **área acadêmica** e em **Machine Learning**
 
 💡 Focado no desenvolvimento de **APIs**, **Sistemas Web** e **lógica de programação**  
