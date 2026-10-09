@@ -35,6 +35,9 @@
 </td>
 </tr>
 </table>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=luisgustavodev&layout=compact&theme=tokyonight&langs_count=8" alt="Linguagens mais utilizadas no GitHub" />
+</div>
 
 ## 📫 Contato
 
