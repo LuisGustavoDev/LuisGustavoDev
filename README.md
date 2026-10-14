@@ -35,7 +35,7 @@ const luis = {
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=java,py,js,ts,html,css,react,nextjs,nestjs,flask,spring,tailwind,mysql,postgres,redis,docker,git,github,vscode,idea,eclipse&perline=11" alt="Stack" />
+<img src="https://skillicons.dev/icons?i=java,py,js,ts,html,css,react,nextjs,nestjs,flask,spring,tailwind,mysql,postgres,redis,docker,git,github,vscode,idea,eclipse,linux&perline=11" alt="Stack" />
 
 </div>
 
