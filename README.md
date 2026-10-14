@@ -4,6 +4,18 @@
 
 <div align="center">
 
+<div align="center">
+
+<a href="mailto:luisgustavo7310@gmail.com" target="_blank">
+  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+
+<a href="https://www.linkedin.com/in/lu%C3%ADs-gustavo-ribeiro-dos-santos" target="_blank">
+  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
+
+</div>
+
 🎓 **Estudante de Ciência da Computação**  
 ⚙️ **Full Stack Developer**  
 🔬 Interesse na **área acadêmica** e em **Machine Learning**
@@ -32,16 +44,6 @@
 
 ## 📫 Contato
 
-<div align="center">
 
-<a href="mailto:luisgustavo7310@gmail.com" target="_blank">
-  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-</a>
-
-<a href="https://www.linkedin.com/in/lu%C3%ADs-gustavo-ribeiro-dos-santos" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
-
-</div>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A66C2,100:7B2FF7&height=100&section=footer" alt="" width="100%" />
