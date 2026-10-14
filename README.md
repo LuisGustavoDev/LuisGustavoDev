@@ -1,35 +1,47 @@
-## Olá! Sou Luís Gustavo
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A66C2,100:7B2FF7&height=190&section=header&text=Lu%C3%ADs%20Gustavo&fontSize=60&fontAlignY=40&desc=Full%20Stack%20Developer%20%7C%20Estudante%20de%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o&descAlignY=60&fontColor=FFFFFF&animation=fade" alt="Luís Gustavo" width="100%" />
-
 <div align="center">
 
-<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A66C2,100:7B2FF7&height=190&section=header&text=Lu%C3%ADs%20Gustavo&fontSize=56&fontColor=ffffff&fontAlignY=36&desc=Full%20Stack%20Developer%20%C2%B7%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o&descSize=18&descAlignY=58" alt="Luís Gustavo" width="100%" />
 
-<a href="mailto:luisgustavo7310@gmail.com" target="_blank">
-  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+<a href="https://github.com/LuisGustavoDev">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=20&pause=1200&color=7B2FF7&center=true&vCenter=true&width=640&height=40&lines=Full+Stack+Developer;APIs+com+NestJS%2C+Spring+e+Flask;Sistemas+web+com+React+e+Next.js;Estudando+Machine+Learning" alt="Typing SVG" />
 </a>
 
-<a href="https://www.linkedin.com/in/lu%C3%ADs-gustavo-ribeiro-dos-santos" target="_blank">
-  <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
+<br><br>
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lu%C3%ADs-gustavo-ribeiro-dos-santos)
+[![E-mail](https://img.shields.io/badge/E--mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisgustavo7310@gmail.com)
 
 </div>
 
-🎓 **Estudante de Ciência da Computação**  
-⚙️ **Full Stack Developer**  
-🔬 Interesse na **área acadêmica** e em **Machine Learning**
+## Sobre
 
-💡 Focado no desenvolvimento de **APIs**, **Sistemas Web** e **lógica de programação**  
-🗄️ **Banco de dados** e boas práticas de software  
+Sou estudante de Ciência da Computação na UniMAX e desenvolvedor full stack. Gosto de construir APIs e sistemas web do banco de dados até a tela, e de entender como as coisas funcionam por dentro.
 
-🚀 Sempre em busca de **aprendizado contínuo** e **evolução na área de tecnologia**
+Fora do código do dia a dia, tenho interesse na área acadêmica e em Machine Learning.
+
+```ts
+const luis = {
+  papel: "Full Stack Developer",
+  estudando: ["Ciência da Computação (UniMAX)", "Machine Learning"],
+  construindo: ["APIs", "sistemas web"],
+  gostaDe: ["lógica de programação", "banco de dados", "boas práticas"],
+  perguntemeSobre: ["NestJS", "Spring", "React", "Next.js", "POO"],
+};
+```
+
+---
+
+## Stack
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=java,py,js,ts,html,css,react,nextjs,nestjs,flask,spring,tailwind,mysql,postgres,redis,docker,git,github,vscode,idea,eclipse&perline=11" alt="Stack" />
 
 </div>
 
-## 🛠️ Skills
 
-<table align="center"> <tr> <td align="center"> <strong>Linguagens</strong><br><br> <img src="https://skillicons.dev/icons?i=java,python,javascript,ts&theme=dark" /> </td> <td align="center"> <strong>Web & Frameworks</strong><br><br> <img src="https://skillicons.dev/icons?i=html,css,react,nextjs,nestjs,flask,spring&theme=dark" /> </td> </tr> <tr> <td align="center"> <strong>Banco de Dados</strong><br><br> <img src="https://skillicons.dev/icons?i=mysql,postgres,redis&theme=dark" /></td> <td align="center"> <strong>Ferramentas</strong><br><br> <img src="https://skillicons.dev/icons?i=git,github,vscode,eclipse,idea,docker&theme=dark" /> </td> </tr> </table>
+
+## GitHub
 
 <table align="center">
   <tr>
