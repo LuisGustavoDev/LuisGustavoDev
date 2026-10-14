@@ -42,8 +42,4 @@
   </tr>
 </table>
 
-## 📫 Contato
-
-
-
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A66C2,100:7B2FF7&height=100&section=footer" alt="" width="100%" />
