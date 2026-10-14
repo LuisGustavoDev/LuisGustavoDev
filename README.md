@@ -1,6 +1,6 @@
 ## Olá! Sou Luís Gustavo
 
-![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=260&section=header&text=Luís%20Gustavo&fontSize=60&fontAlignY=40&desc=Full%20Stack%20Developer%20%7C%20Estudante%20de%20Ciência%20da%20Computação&descAlignY=60&animation=fadeIn)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0A66C2,100:7B2FF7&height=190&section=header&text=Lu%C3%ADs%20Gustavo&fontSize=60&fontAlignY=40&desc=Full%20Stack%20Developer%20%7C%20Estudante%20de%20Ci%C3%AAncia%20da%20Computa%C3%A7%C3%A3o&descAlignY=60&fontColor=FFFFFF&animation=fade" alt="Luís Gustavo" width="100%" />
 
 <div align="center">
 
