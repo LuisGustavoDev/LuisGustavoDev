@@ -15,29 +15,9 @@
 
 </div>
 
-## 🛠️ Skills
+🛠️ Skills
 
-<table align="center">
-<tr>
-<td align="center"><strong>Linguagens</strong><br><br>
-<img src="https://skillicons.dev/icons?i=java,python,javascript,ts&theme=light" />
-</td>
-<td align="center"><strong>Web & Frameworks</strong><br><br>
-<img src="https://skillicons.dev/icons?i=html,css,react,nextjs,flask,spring&theme=light" />
-</td>
-</tr>
-<tr>
-<td align="center"><strong>Banco de Dados</strong><br><br>
-<img src="https://skillicons.dev/icons?i=mysql,postgres&theme=light" /><br>
-</td>
-<td align="center"><strong>Ferramentas</strong><br><br>
-<img src="https://skillicons.dev/icons?i=git,github,vscode,eclipse,idea&theme=light" />
-</td>
-</tr>
-</table>
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=luisgustavodev&layout=compact&theme=tokyonight&langs_count=8" alt="Linguagens mais utilizadas no GitHub" />
-</div>
+<table align="center"> <tr> <td align="center"><strong>Linguagens</strong><br><br> <img src="https://skillicons.dev/icons?i=java,python,javascript,ts&theme=light" /> </td> <td align="center"><strong>Web & Frameworks</strong><br><br> <img src="https://skillicons.dev/icons?i=html,css,react,nextjs,flask,spring&theme=light" /> </td> </tr> <tr> <td align="center"><strong>Banco de Dados</strong><br><br> <img src="https://skillicons.dev/icons?i=mysql,postgres&theme=light" /><br> </td> <td align="center"><strong>Ferramentas</strong><br><br> <img src="https://skillicons.dev/icons?i=git,github,vscode,eclipse,idea,docker&theme=light" /> </td> </tr> </table> <div align="center"> <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=luisgustavodev&layout=compact&theme=tokyonight&langs_count=8" alt="Linguagens mais utilizadas no GitHub" /> </div>
 
 ## 📫 Contato
 
