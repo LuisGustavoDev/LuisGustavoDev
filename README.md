@@ -8,6 +8,7 @@
 
 <br><br>
 
+[![Currículo Lattes](https://img.shields.io/badge/Curr%C3%ADculo_Lattes-00599C?style=for-the-badge&logo=readthedocs&logoColor=white)](https://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K1282810J5)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lu%C3%ADs-gustavo-ribeiro-dos-santos)
 [![E-mail](https://img.shields.io/badge/E--mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisgustavo7310@gmail.com)
 
