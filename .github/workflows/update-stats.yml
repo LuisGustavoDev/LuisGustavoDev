@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
       - name: Gerar estatísticas
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p profile
           curl -fL \
