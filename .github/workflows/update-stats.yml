@@ -16,16 +16,30 @@ jobs:
     steps:
       - name: Baixar repositório
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Verificar repositório
+        run: |
+          pwd
+          git rev-parse --show-toplevel
+          git status
 
       - name: Gerar estatísticas
         run: |
           mkdir -p profile
-          curl -fL \
+          curl -fLsS \
             "https://github-readme-stats.vercel.app/api?username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" \
             -o profile/stats.svg
 
       - name: Salvar alterações
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Atualiza estatísticas do GitHub"
-          file_pattern: profile/stats.svg
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/stats.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza estatísticas do GitHub"
+            git push
+          else
+            echo "Nenhuma alteração na imagem."
+          fi
