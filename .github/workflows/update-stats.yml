@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir -p profile
           curl -fLsS \
-            "https://github-readme-stats.vercel.app/api?username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" \
+            "https://github-readme-stats.vercel.app/api?username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&commits_year=$(date +%Y)&nocache=$(date +%s)" \
             -o profile/stats.svg
 
       - name: Salvar alterações
