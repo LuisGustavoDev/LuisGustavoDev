@@ -49,7 +49,7 @@ const luis = {
     <td align="center" width="50%">
  
 <img
-  src="https://github-readme-stats.vercel.app/api?username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&commits_year=2026&cache_seconds=21600"
+  src="./profile/stats.svg"
   alt="Estatísticas GitHub de 2026"
   width="100%"
 />
