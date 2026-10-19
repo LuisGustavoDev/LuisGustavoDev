@@ -25,12 +25,18 @@ jobs:
           git rev-parse --show-toplevel
           git status
 
+      - name: Definir o ano das estatísticas
+        run: echo "ANO=$(date +%Y)" >> "$GITHUB_ENV"
+
       - name: Gerar estatísticas
-        run: |
-          mkdir -p profile
-          curl -fLsS \
-            "https://github-readme-stats.vercel.app/api?username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&commits_year=$(date +%Y)&nocache=$(date +%s)" \
-            -o profile/stats.svg
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&commits_year=${{ env.ANO }}
+          path: profile/stats.svg
+          # GRS_TOKEN: token pessoal (classic, escopos repo e read:user) para contar os commits privados.
+          # Sem ele, cai no GITHUB_TOKEN e o card mostra só os commits públicos.
+          token: ${{ secrets.GRS_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Salvar alterações
         run: |
