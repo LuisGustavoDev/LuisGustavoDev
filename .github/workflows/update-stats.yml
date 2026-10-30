@@ -37,6 +37,14 @@ jobs:
           # GRS_TOKEN: token pessoal (classic, escopos repo e read:user) para contar os commits privados.
           # Sem ele, cai no GITHUB_TOKEN e o card mostra só os commits públicos.
           token: ${{ secrets.GRS_TOKEN || secrets.GITHUB_TOKEN }}
+          
+      - name: Gerar linguagens
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=LuisGustavoDev&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&card_width=380
+          path: profile/top-langs.svg
+          token: ${{ secrets.GRS_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Salvar alterações
         run: |
