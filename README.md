@@ -89,10 +89,10 @@ const luis = {
 <table align="center">
   <tr>
     <td align="center" width="50%">
-      <img src="./profile/stats.svg" alt="Estatísticas GitHub de 2026" width="100%" />
+      <img src="./profile/stats.svg" alt="Estatísticas GitHub de 2026" height="180" />
     </td>
     <td align="center" width="50%">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=LuisGustavoDev&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens" width="100%" />
+      <img src="./profile/top-langs.svg" alt="Linguagens mais usadas" height="180" />
     </td>
   </tr>
 </table>
