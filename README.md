@@ -47,26 +47,41 @@ const luis = {
 <br>
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=java,py,js,ts,html,css,react,nextjs,nodejs,nestjs,flask,spring,prisma,tailwind,mysql,postgres,mongodb,redis,npm,git,github,vscode,idea,eclipse&perline=12" alt="Stack" />
+<p><b>Uso no dia a dia</b></p>
 
-<p><b>CI/CD, Testes & Infra</b></p>
+<img src="https://skillicons.dev/icons?i=ts,js,py,html,css,nodejs,react,nextjs,nestjs,tailwind,prisma,postgres,mysql,mongodb,npm,git,github&perline=9" alt="Uso no dia a dia" />
 
 <p>
   <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white" alt="GitHub Actions" />
   <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/Docker_Compose-1D63ED?logo=docker&logoColor=white" alt="Docker Compose" />
-  <img src="https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white" alt="Nginx" />
   <img src="https://img.shields.io/badge/Cloudflare-F38020?logo=cloudflare&logoColor=white" alt="Cloudflare" />
-  <img src="https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white" alt="Vercel" />
-  <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" alt="Linux" />
-  <img src="https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=white" alt="Bash" />
+  <img src="https://img.shields.io/badge/Vercel-333333?logo=vercel&logoColor=white" alt="Vercel" />
   <img src="https://img.shields.io/badge/Jest-C21325?logo=jest&logoColor=white" alt="Jest" />
   <img src="https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white" alt="Vitest" />
   <img src="https://img.shields.io/badge/Pytest-0A9EDC?logo=pytest&logoColor=white" alt="Pytest" />
+  <img src="https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" alt="Linux" />
+</p>
+
+<p><b>Já trabalhei</b></p>
+
+<img src="https://skillicons.dev/icons?i=java,spring,flask,redis" alt="Já trabalhei" />
+
+<p>
+  <img src="https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white" alt="Nginx" />
+  <img src="https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=white" alt="Bash" />
   <img src="https://img.shields.io/badge/JUnit_5-25A162?logo=junit5&logoColor=white" alt="JUnit 5" />
 </p>
 
+<p><b>Estudando</b></p>
+
+<p>
+  <img src="https://img.shields.io/badge/PM2-2B037A?logo=pm2&logoColor=white" alt="PM2" />
+  <img src="https://img.shields.io/badge/Machine_Learning-FF6F00?logo=scikitlearn&logoColor=white" alt="Machine Learning" />
+</p>
+
 </div>
+
 
 
 ## GitHub
