@@ -16,7 +16,7 @@ concurrency:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
 
     steps:
       - name: Baixar repositório
@@ -76,16 +76,18 @@ jobs:
           plugin_languages_details: percentage
           plugin_languages_limit: 6
           plugin_languages_ignored: html, css, dockerfile, shell, makefile
-          plugin_languages_analysis_timeout: 30
-          plugin_languages_analysis_timeout_repositories: 7.5
+          plugin_languages_analysis_timeout: 60
+          plugin_languages_analysis_timeout_repositories: 15
+
+          # Analisa todos os repositórios: seus, onde você é colaborador e os das organizações
+          # (além dos repositórios em que você contribuiu com commits, que já entram por padrão).
+          repositories_affiliations: owner, collaborator, organization_member
+          repositories: 500
+          repositories_forks: yes
+          debug: yes # mostra no log cada repositório analisado; pode tirar depois
 
           # Todos os nomes/e-mails que aparecem como autor nos seus commits.
           # Confira com: git log --format='%an <%ae>' | sort -u
           commits_authoring: >-
             LuisGustavoDev,
             luisgustavo7310@gmail.com
-
-          # Repositórios de organizações (não entram sozinhos). owner/repo, separados por vírgula.
-          plugin_languages_indepth_custom: >-
-            lscodesector/REPO-1,
-            lscodesector/REPO-2
