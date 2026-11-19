@@ -2,9 +2,13 @@ name: Atualizar estatísticas do GitHub
 
 on:
   schedule:
-    - cron: "0 * * * *"   # de hora em hora: card de estatísticas
-    - cron: "17 6 * * *"  # 1x por dia (03:17 em Brasília): também o card de linguagens (análise pesada)
+    - cron: "0 * * * *"
   workflow_dispatch:
+    inputs:
+      full:
+        description: "Refazer a análise de linguagens do zero"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -16,7 +20,7 @@ concurrency:
 jobs:
   update-stats:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 60
 
     steps:
       - name: Baixar repositório
@@ -43,51 +47,32 @@ jobs:
           # Sem ele, cai no GITHUB_TOKEN e o card mostra só os commits públicos.
           token: ${{ secrets.GRS_TOKEN || secrets.GITHUB_TOKEN }}
 
-      - name: Salvar estatísticas
+      # Analisa os SEUS commits em todos os repositórios (privados, de organizações e de terceiros).
+      # A primeira execução lê o histórico inteiro; as seguintes só olham repositórios com push novo
+      # e só somam os commits que ainda não foram contados (progresso em profile/langs-state.json).
+      - name: Gerar linguagens
+        env:
+          GH_TOKEN: ${{ secrets.GRS_TOKEN }}
+          GH_USER: LuisGustavoDev
+          # Todos os e-mails que aparecem como autor nos seus commits (o noreply do GitHub já entra sozinho).
+          # Confira num repositório com: git log --format='%ae' | sort | uniq -c
+          AUTHOR_EMAILS: luisgustavo7310@gmail.com
+          AUTHOR_NAMES: LuisGustavoDev
+          IGNORED_LANGS: HTML, CSS, Dockerfile, Shell, Makefile
+          LANGS_COUNT: "6"
+          FULL: ${{ inputs.full && '1' || '' }}
+        run: python3 scripts/top_langs.py
+        continue-on-error: true # se falhar, o card de estatísticas ainda é salvo
+
+      - name: Salvar alterações
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/stats.svg
+          git add profile/stats.svg profile/top-langs.svg profile/langs-state.json
           if ! git diff --cached --quiet; then
             git commit -m "Atualiza estatísticas do GitHub"
             git pull --rebase
             git push
           else
-            echo "Nenhuma alteração nas estatísticas."
+            echo "Nenhuma alteração nas imagens."
           fi
-
-      # Roda só no agendamento diário ou quando disparado à mão.
-      # Fica por último porque o metrics faz o próprio commit (via API), sem depender do git local.
-      - name: Gerar linguagens (análise dos seus commits)
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * *'
-        uses: lowlighter/metrics@latest
-        with:
-          filename: profile/top-langs.svg
-          token: ${{ secrets.GRS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          committer_message: "Atualiza linguagens"
-          user: LuisGustavoDev
-          base: ""
-          config_timezone: America/Sao_Paulo
-
-          plugin_languages: yes
-          plugin_languages_indepth: yes
-          plugin_languages_sections: most-used
-          plugin_languages_details: percentage
-          plugin_languages_limit: 6
-          plugin_languages_ignored: html, css, dockerfile, shell, makefile
-          plugin_languages_analysis_timeout: 60
-          plugin_languages_analysis_timeout_repositories: 15
-
-          # Analisa todos os repositórios: seus, onde você é colaborador e os das organizações
-          # (além dos repositórios em que você contribuiu com commits, que já entram por padrão).
-          repositories_affiliations: owner, collaborator, organization_member
-          repositories: 500
-          repositories_forks: yes
-          debug: yes # mostra no log cada repositório analisado; pode tirar depois
-
-          # Todos os nomes/e-mails que aparecem como autor nos seus commits.
-          # Confira com: git log --format='%an <%ae>' | sort -u
-          commits_authoring: >-
-            LuisGustavoDev,
-            luisgustavo7310@gmail.com
