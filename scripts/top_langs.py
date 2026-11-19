@@ -91,8 +91,15 @@ COLORS = {
 }
 SKIP_DIR = re.compile(
     r"(^|/)(node_modules|vendor|dist|build|out|\.next|\.nuxt|coverage|__pycache__|\.venv|venv|"
-    r"site-packages|bower_components|public/build|storage/framework|prisma/migrations)/"
+    r"site-packages|bower_components|public/build|storage/framework|prisma/migrations|"
+    # WordPress: núcleo, plugins, uploads e cache não são código seu
+    r"wp-admin|wp-includes|wp-content/plugins|wp-content/mu-plugins|wp-content/uploads|wp-content/cache|"
+    r"wp-content/upgrade|wp-content/languages|"
+    # bibliotecas de terceiros copiadas para o projeto
+    r"third[-_]party|assets/vendor|assets/libs?|static/vendor|js/vendor|css/vendor|plugins/vendor)/"
 )
+# Um commit que adiciona mais linhas que isso de uma vez é importação (site inteiro, scaffold, cópia).
+MAX_LINES_PER_COMMIT = 10000
 SKIP_FILE = re.compile(r"(\.min\.(js|css)|\.d\.ts|\.map|-lock\.\w+|\.lock|\.bundle\.js|\.chunk\.js)$")
 
 
@@ -225,6 +232,7 @@ def git(args, cwd=None, timeout=900):
                           env={**os.environ, "GIT_TERMINAL_PROMPT": "0"})
 
 
+SKIPPED_BULK = []
 RENAME_BRACES = re.compile(r"\{[^{}]* => ([^{}]*)\}")
 
 
@@ -262,6 +270,7 @@ def analyze(repo, since, seen, mine=frozenset()):
             if key in seen:
                 continue
             new.append(key)
+            commit_totals = {}
             for line in body.splitlines():
                 parts = line.split("\t")
                 if len(parts) != 3 or parts[0] == "-":
@@ -272,7 +281,12 @@ def analyze(repo, since, seen, mine=frozenset()):
                     path = path.split(" => ")[-1].replace("//", "/")
                 lang = language_of(path)
                 if lang and 0 < added <= MAX_LINES_PER_FILE:
-                    totals[lang] = totals.get(lang, 0) + added
+                    commit_totals[lang] = commit_totals.get(lang, 0) + added
+            if sum(commit_totals.values()) > MAX_LINES_PER_COMMIT:
+                SKIPPED_BULK.append(sha)
+                continue
+            for lang, v in commit_totals.items():
+                totals[lang] = totals.get(lang, 0) + v
         return totals, new
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -368,6 +382,8 @@ def main():
     with open(STATE_PATH, "w") as f:
         json.dump(state, f, indent=1, sort_keys=True)
 
+    if SKIPPED_BULK:
+        log(f"Commits de importação em massa ignorados (> {MAX_LINES_PER_COMMIT} linhas): {len(SKIPPED_BULK)}")
     log(f"\nCommits novos nesta execução: {added_commits} · total analisado: {state['commits']}")
     for lang, v in sorted(state["totals"].items(), key=lambda x: -x[1])[:12]:
         log(f"  {lang:<18} {v:>9} linhas{'  (escondida)' if lang.lower() in IGNORED else ''}")
