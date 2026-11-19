@@ -146,7 +146,7 @@ def graphql(query, variables, tries=4):
             time.sleep(3 * (attempt + 1))
 
 
-REPO_FIELDS = "nameWithOwner pushedAt isEmpty defaultBranchRef { name }"
+REPO_FIELDS = "nameWithOwner pushedAt isEmpty isPrivate defaultBranchRef { name }"
 
 
 def discover():
@@ -185,6 +185,38 @@ def discover():
     return repos
 
 
+USER_ID = None
+
+
+def my_commits(repo, since):
+    """SHAs da branch padrão que o GitHub atribui à sua conta (mesmo critério das contribuições)."""
+    global USER_ID
+    if USER_ID is None:
+        USER_ID = graphql("query($l:String!){user(login:$l){id}}", {"l": USER})["user"]["id"]
+    owner, name = repo.split("/", 1)
+    shas, cursor = set(), None
+    since_arg = ", since:$s" if since else ""
+    q = """query($o:String!,$n:String!,$a:ID!,$c:String%s){repository(owner:$o,name:$n){defaultBranchRef{target{
+           ... on Commit{history(first:100, after:$c, author:{id:$a}%s){nodes{oid} pageInfo{hasNextPage endCursor}}}}}}}""" % (
+        ",$s:GitTimestamp!" if since else "", since_arg)
+    while True:
+        v = {"o": owner, "n": name, "a": USER_ID, "c": cursor}
+        if since:
+            v["s"] = since + "T00:00:00Z"
+        ref = (graphql(q, v).get("repository") or {}).get("defaultBranchRef")
+        if not ref:
+            return shas
+        hist = ref["target"]["history"]
+        shas.update(n["oid"] for n in hist["nodes"])
+        if not hist["pageInfo"]["hasNextPage"]:
+            return shas
+        cursor = hist["pageInfo"]["endCursor"]
+
+
+def label(name, info):
+    return f"🔒 privado-{h(name.lower())[:6]}" if info.get("isPrivate") else name
+
+
 # ---------------------------------------------------------------- git
 def git(args, cwd=None, timeout=900):
     auth = base64.b64encode(f"x-access-token:{TOKEN}".encode()).decode()
@@ -196,7 +228,7 @@ def git(args, cwd=None, timeout=900):
 RENAME_BRACES = re.compile(r"\{[^{}]* => ([^{}]*)\}")
 
 
-def analyze(repo, since, seen):
+def analyze(repo, since, seen, mine=frozenset()):
     """Retorna (linhas por linguagem, hashes dos commits novos)."""
     tmp = tempfile.mkdtemp(prefix="langs-")
     try:
@@ -224,7 +256,7 @@ def analyze(repo, since, seen):
         for block in out.split("\x1e")[1:]:
             header, _, body = block.partition("\n")
             sha, email, name = header.split("\x1f")
-            if sha in boundary or not is_me(email, name):
+            if sha in boundary or not (sha in mine or is_me(email, name)):
                 continue
             key = h(sha)
             if key in seen:
@@ -315,17 +347,17 @@ def main():
 
         t0 = time.time()
         try:
-            totals, new = analyze(name, since, set(entry["seen"]))
+            totals, new = analyze(name, since, set(entry["seen"]), my_commits(name, since))
         except Exception as e:  # noqa: BLE001
-            failures.append(name)
-            log(f"  ✗ {name}: {e}")
+            failures.append(label(name, info))
+            log(f"  ✗ {label(name, info)}: {e}")
             continue
         for lang, v in totals.items():
             state["totals"][lang] = state["totals"].get(lang, 0) + v
         entry["seen"].extend(new)
         entry["last"] = started.isoformat(timespec="seconds")
         added_commits += len(new)
-        log(f"  ✓ {name}: +{len(new)} commits ({'desde ' + since if since else 'histórico completo'}, {time.time() - t0:.0f}s)")
+        log(f"  ✓ {label(name, info)}: +{len(new)} commits ({'desde ' + since if since else 'histórico completo'}, {time.time() - t0:.0f}s)")
 
     state["commits"] = sum(len(e["seen"]) for e in state["repos"].values())
     state["last_run"] = started.isoformat(timespec="seconds")
