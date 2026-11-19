@@ -294,12 +294,11 @@ def analyze(repo, since, seen, mine=frozenset()):
 
 # ---------------------------------------------------------------- SVG (estilo tokyonight compacto)
 def render(totals):
+    """Mesmo visual do card de estatísticas (github-readme-stats, tema tokyonight, 467x195)."""
     shown = sorted(((l, v) for l, v in totals.items() if l.lower() not in IGNORED and v > 0),
                    key=lambda x: -x[1])[:LANGS_COUNT]
     total = sum(v for _, v in shown) or 1
-    width, bar_w = 380, 330
-    rows = (len(shown) + 1) // 2
-    height = 90 + rows * 25
+    width, height, bar_w, col_w = 467, 195, 417, 210
 
     bar, x = [], 0.0
     for lang, v in shown:
@@ -312,24 +311,33 @@ def render(totals):
     for i, (lang, v) in enumerate(shown):
         col, row = i % 2, i // 2
         legend.append(
-            f'<g transform="translate({col * 165}, {row * 25})">'
-            f'<circle cx="5" cy="6" r="5" fill="{COLORS.get(lang, "#858585")}"/>'
-            f'<text x="15" y="10" class="lang-name">{escape(lang)} {100 * v / total:.2f}%</text></g>'
+            f'<g class="stagger" style="animation-delay: {450 + i * 150}ms" '
+            f'transform="translate({col * col_w}, {row * 28})">'
+            f'<circle cx="6" cy="-5" r="6" fill="{COLORS.get(lang, "#858585")}"/>'
+            f'<text x="20" y="0" class="stat">{escape(lang)}</text>'
+            f'<text x="{col_w - 30}" y="0" class="stat not_bold" text-anchor="end">{100 * v / total:.2f}%</text></g>'
         )
 
-    return f"""<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
-  <title id="title">{escape(TITLE)}</title>
+    return f"""<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="titleId">
+  <title id="titleId">{escape(TITLE)}</title>
   <style>
-    .header {{ font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #70a5fd; }}
-    .lang-name {{ font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #38bdae; }}
+    .header {{ font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #70a5fd; animation: fadeInAnimation 0.8s ease-in-out forwards; }}
+    @supports(-moz-appearance: auto) {{ .header {{ font-size: 15.5px; }} }}
+    .stat {{ font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #38bdae; }}
+    @supports(-moz-appearance: auto) {{ .stat {{ font-size: 12px; }} }}
+    .not_bold {{ font-weight: 400; }}
+    .stagger {{ opacity: 0; animation: fadeInAnimation 0.3s ease-in-out forwards; }}
+    .bar {{ animation: growWidth 0.6s ease-in-out forwards; transform-origin: left; }}
+    @keyframes fadeInAnimation {{ from {{ opacity: 0; }} to {{ opacity: 1; }} }}
+    @keyframes growWidth {{ from {{ transform: scaleX(0); }} to {{ transform: scaleX(1); }} }}
   </style>
-  <rect x="0.5" y="0.5" rx="4.5" height="99%" width="{width - 1}" fill="#1a1b27" stroke-opacity="0"/>
+  <rect x="0.5" y="0.5" rx="4.5" height="99%" width="{width - 1}" fill="#1a1b27" stroke="#e4e2e2" stroke-opacity="0"/>
   <g transform="translate(25, 35)"><text x="0" y="0" class="header">{escape(TITLE)}</text></g>
-  <g transform="translate(25, 55)">
+  <g transform="translate(25, 60)">
     <mask id="rect-mask"><rect x="0" y="0" width="{bar_w}" height="8" fill="white" rx="5"/></mask>
-    {"".join(bar)}
-    <g transform="translate(0, 25)">{"".join(legend)}</g>
+    <g class="bar">{"".join(bar)}</g>
   </g>
+  <g transform="translate(25, 105)">{"".join(legend)}</g>
 </svg>
 """
 
