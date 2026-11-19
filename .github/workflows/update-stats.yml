@@ -1,0 +1,91 @@
+name: Atualizar estatísticas do GitHub
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # de hora em hora: card de estatísticas
+    - cron: "17 6 * * *"  # 1x por dia (03:17 em Brasília): também o card de linguagens (análise pesada)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: perfil-readme
+  cancel-in-progress: false
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Verificar repositório
+        run: |
+          pwd
+          git rev-parse --show-toplevel
+          git status
+
+      - name: Definir o ano das estatísticas
+        run: echo "ANO=$(date +%Y)" >> "$GITHUB_ENV"
+
+      - name: Gerar estatísticas
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=LuisGustavoDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&commits_year=${{ env.ANO }}
+          path: profile/stats.svg
+          # GRS_TOKEN: token pessoal (classic, escopos repo, read:org e read:user) para contar os commits privados.
+          # Sem ele, cai no GITHUB_TOKEN e o card mostra só os commits públicos.
+          token: ${{ secrets.GRS_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Salvar estatísticas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/stats.svg
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza estatísticas do GitHub"
+            git pull --rebase
+            git push
+          else
+            echo "Nenhuma alteração nas estatísticas."
+          fi
+
+      # Roda só no agendamento diário ou quando disparado à mão.
+      # Fica por último porque o metrics faz o próprio commit (via API), sem depender do git local.
+      - name: Gerar linguagens (análise dos seus commits)
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * *'
+        uses: lowlighter/metrics@latest
+        with:
+          filename: profile/top-langs.svg
+          token: ${{ secrets.GRS_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          committer_message: "Atualiza linguagens"
+          user: LuisGustavoDev
+          base: ""
+          config_timezone: America/Sao_Paulo
+
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_sections: most-used
+          plugin_languages_details: percentage
+          plugin_languages_limit: 6
+          plugin_languages_ignored: html, css, dockerfile, shell, makefile
+          plugin_languages_analysis_timeout: 30
+          plugin_languages_analysis_timeout_repositories: 7.5
+
+          # Todos os nomes/e-mails que aparecem como autor nos seus commits.
+          # Confira com: git log --format='%an <%ae>' | sort -u
+          commits_authoring: >-
+            LuisGustavoDev,
+            luisgustavo7310@gmail.com
+
+          # Repositórios de organizações (não entram sozinhos). owner/repo, separados por vírgula.
+          plugin_languages_indepth_custom: >-
+            lscodesector/REPO-1,
+            lscodesector/REPO-2
